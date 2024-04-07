@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ResumeService {
-    private ResumeRepository resumeRepository;
+    private ResumeRepository resumeRepository = new ResumeRepository();
     private Connection connection = DbConnection.getConnection();
 
     public ResumeDTO createResume(ResumeDTO resumeDTO) {
@@ -72,7 +72,11 @@ public class ResumeService {
     }
 
     public void deleteResume(Long id) {
-        // Удаление резюме из базы данных по идентификатору
         resumeRepository.delete(id);
+    }
+
+
+    public void update(Resume resume) {
+        resumeRepository.updateResume(resume);
     }
 }

@@ -9,13 +9,13 @@ import java.time.LocalDate;
 
 public class main {
     public static void main(String[] args) {
-        /*Work work = new Work("OMON", LocalDate.of(2013, 10, 10), LocalDate.of(2021, 10, 10), "input people");
-        Resume resume = new Resume("Pol", "Rad", 22, "pol@gmail.com", "Marvel", work);
+        Work work = new Work("Capitan America", LocalDate.of(2013, 10, 10), LocalDate.of(2021, 10, 10), "input people");
+        Resume resume = new Resume("Kris", "Evans", 45, "kris@gmail.com", "Marvel", work);
         ResumeRepository resumeRepository = new ResumeRepository();
-       resumeRepository.save(resume);*/
+        resumeRepository.save(resume);
 
-        ResumeService resumeService = new ResumeService();
+       /* ResumeService resumeService = new ResumeService();
         resumeService.deleteResume(2L);
-        System.out.println(resumeService.getAllResumes());
+        System.out.println(resumeService.getAllResumes());*/
     }
 }

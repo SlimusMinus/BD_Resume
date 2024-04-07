@@ -7,7 +7,7 @@
 
   <servlet>
     <servlet-name>HelloWorld</servlet-name>
-    <servlet-class>com.aston.krylov.controller.ResumeServlet</servlet-class>
+    <servlet-class>com.aston.krylov.controller.GetAllResumeServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
