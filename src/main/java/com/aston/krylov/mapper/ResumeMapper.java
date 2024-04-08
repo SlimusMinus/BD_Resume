@@ -2,6 +2,9 @@ package com.aston.krylov.mapper;
 
 import com.aston.krylov.dto.ResumeDTO;
 import com.aston.krylov.entity.Resume;
+import com.aston.krylov.entity.Work;
+
+import java.util.List;
 
 public class ResumeMapper {
     public static ResumeDTO toDTO(Resume resume) {
@@ -18,7 +21,7 @@ public class ResumeMapper {
 
         // Преобразование объекта Work, если присутствует
         if (resume.getWork() != null) {
-            dto.setWork(WorkMapper.toDTO(resume.getWork()));
+            dto.setWork(WorkMapper.toDTO((Work) resume.getWork()));
         }
 
         return dto;
@@ -38,7 +41,7 @@ public class ResumeMapper {
 
         // Преобразование объекта WorkDTO, если присутствует
         if (resumeDTO.getWork() != null) {
-            resume.setWork(WorkMapper.fromDTO(resumeDTO.getWork()));
+            //resume.setWork(WorkMapper.fromDTO(resumeDTO.getWork()));
         }
 
         return resume;

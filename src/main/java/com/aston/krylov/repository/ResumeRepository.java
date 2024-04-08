@@ -22,7 +22,7 @@ public class ResumeRepository {
             statement.setLong(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    resume.setId(resultSet.getLong("id"));
+                    resume.setResumeId(resultSet.getLong("id"));
                     resume.setName(resultSet.getString("name"));
                     resume.setSurname(resultSet.getString("surname"));
                     resume.setAge(resultSet.getInt("age"));
@@ -43,7 +43,7 @@ public class ResumeRepository {
         String sql = "SELECT * FROM resume";
         try (PreparedStatement statement = connection.prepareStatement(sql); ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                resume.setId(resultSet.getLong("id"));
+                resume.setResumeId(resultSet.getLong("id"));
                 resume.setName(resultSet.getString("name"));
                 resume.setSurname(resultSet.getString("surname"));
                 resume.setAge(resultSet.getInt("age"));
@@ -87,7 +87,7 @@ public class ResumeRepository {
             }
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    resume.setId(generatedKeys.getLong(1));
+                    resume.setResumeId(generatedKeys.getLong(1));
                 } else {
                     throw new SQLException("Saving resume failed, no ID obtained.");
                 }
@@ -109,11 +109,11 @@ public class ResumeRepository {
             statement.setInt(3, resume.getAge());
             statement.setString(4, resume.getEmail());
             statement.setString(5, resume.getName_Work());
-            statement.setLong(6, resume.getId());
+            statement.setLong(6, resume.getResumeId());
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated == 0) {
-                throw new SQLException("Failed to update the resume with id " + resume.getId());
+                throw new SQLException("Failed to update the resume with id " + resume.getResumeId());
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,25 +1,21 @@
 package com.aston.krylov.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class Work {
-    private long id;
+    private long workId;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
     private String responsibilities;
-
-    public Work(String name, LocalDate startDate, LocalDate endDate, String responsibilities) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.responsibilities = responsibilities;
-    }
+    private Resume resume;
 }

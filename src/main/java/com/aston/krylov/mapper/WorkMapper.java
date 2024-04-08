@@ -3,6 +3,8 @@ package com.aston.krylov.mapper;
 import com.aston.krylov.dto.WorkDTO;
 import com.aston.krylov.entity.Work;
 
+import java.util.List;
+
 public class WorkMapper {
 
     public static WorkDTO toDTO(Work work) {

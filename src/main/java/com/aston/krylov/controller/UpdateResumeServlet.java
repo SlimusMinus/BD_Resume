@@ -40,7 +40,7 @@ public class UpdateResumeServlet extends HttpServlet {
 
         // Создаем объект Resume на основе полученных данных
         Resume resume = new Resume();
-        resume.setId(id); // Устанавливаем идентификатор резюме для обновления
+        resume.setResumeId(id); // Устанавливаем идентификатор резюме для обновления
         resume.setName(name);
         resume.setSurname(surname);
         resume.setAge(age);
