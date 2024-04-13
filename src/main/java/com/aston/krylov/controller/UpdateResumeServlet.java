@@ -36,10 +36,9 @@ public class UpdateResumeServlet extends HttpServlet {
         String surname = req.getParameter("surname");
         int age = Integer.parseInt(req.getParameter("age"));
         String email = req.getParameter("email");
-        String name_work = req.getParameter("name_work");
 
         List<Work> work = new ArrayList<>();
-        Resume resume = new Resume(id, name, surname, age, email, name_work, work);
+        Resume resume = new Resume(id, name, surname, age, email, work);
 
         updateResumeService.update(resume);
 

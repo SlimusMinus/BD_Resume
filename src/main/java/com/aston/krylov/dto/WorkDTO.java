@@ -1,13 +1,18 @@
 package com.aston.krylov.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class WorkDTO {
+    private String name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String name;
     private String responsibilities;
+    private long resume_id;
 }

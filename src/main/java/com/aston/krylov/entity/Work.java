@@ -14,5 +14,5 @@ public class Work {
     private LocalDate startDate;
     private LocalDate endDate;
     private String responsibilities;
-    private Resume resume;
+    private long resume_id;
 }

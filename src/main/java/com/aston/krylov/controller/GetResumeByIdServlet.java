@@ -32,9 +32,11 @@ public class GetResumeByIdServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String idParam = req.getParameter("id");
+
+
         if (idParam == null || idParam.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().println("Не указан идентификатор резюме");
+            resp.getWriter().println("Resume ID not specified");
         } else {
             ResumeDTO resumeDTO = resumeService.getResume(Long.valueOf(idParam));
             sendResponse.sendResponse(resp, resumeDTO);

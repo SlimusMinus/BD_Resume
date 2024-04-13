@@ -1,10 +1,7 @@
 package com.aston.krylov.controller;
 
-import com.aston.krylov.dto.ResumeDTO;
 import com.aston.krylov.dto.WorkDTO;
-import com.aston.krylov.entity.Resume;
-import com.aston.krylov.entity.Work;
-import com.aston.krylov.service.CreateResumeService;
+import com.aston.krylov.service.CreateWorkService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
-@WebServlet("/add")
-public class AddNewResumeServlet extends HttpServlet {
-    private CreateResumeService resumeService;
+@WebServlet("/addWork")
+public class AddNewWorkServlet extends HttpServlet {
+    private CreateWorkService createWorkService;
 
     @Override
     public void init() {
@@ -27,23 +23,23 @@ public class AddNewResumeServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        this.resumeService = new CreateResumeService();
+        this.createWorkService = new CreateWorkService();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String name = req.getParameter("name");
-        String surname = req.getParameter("surname");
-        int age = Integer.parseInt(req.getParameter("age"));
-        String email = req.getParameter("email");
+        LocalDate start_date = LocalDate.parse(req.getParameter("start_date"));
+        LocalDate end_date = LocalDate.parse(req.getParameter("end_date"));
+        String responsibilities = req.getParameter("responsibilities");
+        long resume_id = Long.parseLong(req.getParameter("resume_id"));
 
-        List<WorkDTO> workDTO = new ArrayList<>();
-        ResumeDTO resume = new ResumeDTO(name, surname, age, email, workDTO);
+        WorkDTO workDTO = new WorkDTO(name, start_date, end_date, responsibilities, resume_id);
 
-        resumeService.createResume(resume);
+        createWorkService.createResume(workDTO);
 
-        resp.getWriter().println("Resume add successfully");
+        resp.getWriter().println("Work add successfully");
     }
 
     @Override

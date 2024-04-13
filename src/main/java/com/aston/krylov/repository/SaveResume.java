@@ -10,14 +10,13 @@ import java.sql.SQLException;
 
 public class SaveResume {
     public void save(ResumeDTO resume) {
-        String sqlSave = "INSERT into resume (name, surname, age, email, name_Work) values (?, ?, ?, ?, ?)";
+        String sqlSave = "INSERT into resume (name, surname, age, email) values (?, ?, ?, ?)";
 
         try (Connection connection = DbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlSave)) {
             statement.setString(1, resume.getName());
             statement.setString(2, resume.getSurname());
             statement.setInt(3, resume.getAge());
             statement.setString(4, resume.getEmail());
-            statement.setString(5, resume.getName_Work());
 
             int affectRows = statement.executeUpdate();
             if (affectRows == 0) {

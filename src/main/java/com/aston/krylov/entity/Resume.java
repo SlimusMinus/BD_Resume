@@ -15,7 +15,5 @@ public class Resume {
     private String surname;
     private int age;
     private String email;
-    private String name_Work;
     private List<Work> work;
-
 }

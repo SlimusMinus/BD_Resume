@@ -29,7 +29,6 @@ public class DatabaseInitServlet extends HttpServlet {
                     "    surname VARCHAR(255) NOT NULL,\n" +
                     "    age INT NOT NULL,\n" +
                     "    email VARCHAR(255) NOT NULL,\n" +
-                    "    name_work VARCHAR(255),\n" +
                     "    CONSTRAINT unique_name_surname_age UNIQUE (name, surname, age)\n" +
                     ");";
             statement.execute(createTableSQL);
@@ -41,7 +40,7 @@ public class DatabaseInitServlet extends HttpServlet {
                     "    end_date DATE NOT NULL,\n" +
                     "    responsibilities TEXT,\n" +
                     "    resume_id BIGINT,\n" +
-                    "    FOREIGN KEY (resume_id) REFERENCES resume(resume_id)\n" +
+                    "    FOREIGN KEY (resume_id) REFERENCES resume(resume_id) ON DELETE CASCADE\n" +
                     ");";
             statement.execute(createTableSQL2);
 
