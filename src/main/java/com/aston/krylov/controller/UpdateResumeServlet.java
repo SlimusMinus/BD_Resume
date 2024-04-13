@@ -1,7 +1,8 @@
 package com.aston.krylov.controller;
 
 import com.aston.krylov.entity.Resume;
-import com.aston.krylov.service.ResumeService;
+import com.aston.krylov.entity.Work;
+import com.aston.krylov.service.UpdateResumeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,27 +10,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/update")
 public class UpdateResumeServlet extends HttpServlet {
-
-    private ResumeService resumeService;
+    private UpdateResumeService updateResumeService;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         try {
             Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
+            super.init();
+        } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        super.init();
-        // Инициализация вашего сервиса резюме
-        this.resumeService = new ResumeService();
-
+        this.updateResumeService = new UpdateResumeService();
     }
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Получаем данные для обновления резюме из параметров запроса
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         long id = Long.parseLong(req.getParameter("id"));
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
@@ -37,20 +38,16 @@ public class UpdateResumeServlet extends HttpServlet {
         String email = req.getParameter("email");
         String name_work = req.getParameter("name_work");
 
+        List<Work> work = new ArrayList<>();
+        Resume resume = new Resume(id, name, surname, age, email, name_work, work);
 
-        // Создаем объект Resume на основе полученных данных
-        Resume resume = new Resume();
-        resume.setResumeId(id); // Устанавливаем идентификатор резюме для обновления
-        resume.setName(name);
-        resume.setSurname(surname);
-        resume.setAge(age);
-        resume.setEmail(email);
-        resume.setName_Work(name_work);
+        updateResumeService.update(resume);
 
-        // Здесь вызываем ваш сервис или DAO для обновления резюме
-        resumeService.update(resume);
-
-        // Возвращаем клиенту сообщение об успешном обновлении резюме
         resp.getWriter().println("Резюме успешно обновлено");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
     }
 }

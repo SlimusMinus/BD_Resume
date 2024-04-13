@@ -1,6 +1,7 @@
 package com.aston.krylov.controller;
 
-import com.aston.krylov.service.ResumeService;
+import com.aston.krylov.service.DeleteMethodForServlet;
+import com.aston.krylov.service.DeleteResumeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,46 +13,30 @@ import java.io.IOException;
 @WebServlet("/deleteById")
 public class DeleteByIdServlet extends HttpServlet {
 
-    private ResumeService resumeService;
+    private DeleteResumeService resumeService;
+    private DeleteMethodForServlet deleteMethodForServlet;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         try {
             Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
+            super.init();
+        } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        super.init();
-        // Инициализация вашего сервиса резюме
-        this.resumeService = new ResumeService();
-
+        this.resumeService = new DeleteResumeService();
+        this.deleteMethodForServlet = new DeleteMethodForServlet();
     }
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Получаем идентификатор резюме из параметра запроса id
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         String idParam = req.getParameter("id");
+        deleteMethodForServlet.deleteResume(idParam, resp, resumeService);
 
-        // Проверяем, что параметр id передан в запросе
-        if (idParam == null || idParam.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().println("Не указан идентификатор резюме");
-            return;
-        }
+    }
 
-        try {
-            long id = Long.parseLong(idParam);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            // Здесь вызываем ваш сервис или DAO для удаления резюме по идентификатору
-            resumeService.deleteResume(id);
-
-            resp.setStatus(HttpServletResponse.SC_OK);
-            resp.getWriter().println("Резюме с идентификатором " + id + " успешно удалено");
-        } catch (NumberFormatException e) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().println("Некорректный формат идентификатора резюме");
-        } catch (Exception e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().println("Ошибка при удалении резюме: " + e.getMessage());
-        }
     }
 }

@@ -1,5 +1,7 @@
 package com.aston.krylov.controller;
 
+import com.aston.krylov.repository.DbConnection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,24 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 @WebServlet(name = "DatabaseInitServlet", urlPatterns = "/init", loadOnStartup = 1)
 public class DatabaseInitServlet extends HttpServlet {
-    private static Connection connection;
-    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String LOGIN = "postgres";
-    private static final String PASSWORD = "root";
 
     @Override
     public void init() throws ServletException {
         super.init();
 
-        try {
+        try(Connection connection = DbConnection.getConnection()) {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
             Statement statement = connection.createStatement();
 
             // SQL-запрос для создания таблицы
@@ -58,6 +54,5 @@ public class DatabaseInitServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Пустой метод doGet
-    }
+     }
 }

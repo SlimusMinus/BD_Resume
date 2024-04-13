@@ -1,7 +1,5 @@
 package com.aston.krylov.dto;
 
-import com.aston.krylov.entity.Resume;
-import com.aston.krylov.entity.Work;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +15,5 @@ public class ResumeDTO {
     private int age;
     private String email;
     private String name_Work;
-    private WorkDTO work;
+    private List<WorkDTO> work;
 }
