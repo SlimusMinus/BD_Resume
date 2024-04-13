@@ -15,4 +15,5 @@ public class WorkDTO {
     private LocalDate endDate;
     private String responsibilities;
     private long resume_id;
+
 }

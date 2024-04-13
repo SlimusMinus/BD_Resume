@@ -20,7 +20,6 @@ public class WorkMapper {
             dto.setStartDate(item.getStartDate());
             dto.setEndDate(item.getEndDate());
             dto.setResponsibilities(item.getResponsibilities());
-            dto.setResume_id(item.getResume_id());
             workDTOList.add(dto);
         }
         return workDTOList;

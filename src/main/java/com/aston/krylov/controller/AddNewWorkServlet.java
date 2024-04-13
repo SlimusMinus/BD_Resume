@@ -27,7 +27,7 @@ public class AddNewWorkServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String name = req.getParameter("name");
         LocalDate start_date = LocalDate.parse(req.getParameter("start_date"));
@@ -42,8 +42,4 @@ public class AddNewWorkServlet extends HttpServlet {
         resp.getWriter().println("Work add successfully");
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
 }

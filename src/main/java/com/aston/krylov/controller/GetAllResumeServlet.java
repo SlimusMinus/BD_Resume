@@ -32,17 +32,13 @@ public class GetAllResumeServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-
         this.resumeService = new GetAllResumeService();
         this.sendResponse = new SendResponse();
-
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
         List<ResumeDTO> resumes = resumeService.getAllResumes();
-
         for (ResumeDTO item : resumes) {
             sendResponse.sendResponse(resp, item);
         }

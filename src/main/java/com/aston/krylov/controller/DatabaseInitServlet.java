@@ -19,11 +19,10 @@ public class DatabaseInitServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
 
-        try(Connection connection = DbConnection.getConnection()) {
+        try (Connection connection = DbConnection.getConnection()) {
             Class.forName("org.postgresql.Driver");
             Statement statement = connection.createStatement();
 
-            // SQL-запрос для создания таблицы
             String createTableSQL = "CREATE TABLE IF NOT EXISTS resume (resume_id SERIAL PRIMARY KEY,\n" +
                     "    name VARCHAR(255) NOT NULL,\n" +
                     "    surname VARCHAR(255) NOT NULL,\n" +
@@ -53,5 +52,5 @@ public class DatabaseInitServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     }
+    }
 }

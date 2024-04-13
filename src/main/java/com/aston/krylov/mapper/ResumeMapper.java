@@ -17,11 +17,9 @@ public class ResumeMapper {
         dto.setSurname(resume.getSurname());
         dto.setAge(resume.getAge());
         dto.setEmail(resume.getEmail());
-
         if (resume.getWork() != null) {
             dto.setWork(WorkMapper.toDTO(resume.getWork()));
         }
-
         return dto;
     }
 

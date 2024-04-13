@@ -36,17 +36,11 @@ public class UpdateResumeServlet extends HttpServlet {
         String surname = req.getParameter("surname");
         int age = Integer.parseInt(req.getParameter("age"));
         String email = req.getParameter("email");
-
-        List<Work> work = new ArrayList<>();
-        Resume resume = new Resume(id, name, surname, age, email, work);
+        Resume resume = new Resume(id, name, surname, age, email);
 
         updateResumeService.update(resume);
 
-        resp.getWriter().println("Резюме успешно обновлено");
+        resp.getWriter().println("Resume successfully update");
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
 }

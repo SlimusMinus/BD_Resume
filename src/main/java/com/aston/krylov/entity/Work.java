@@ -15,4 +15,12 @@ public class Work {
     private LocalDate endDate;
     private String responsibilities;
     private long resume_id;
+
+    public Work(String name, LocalDate startDate, LocalDate endDate, String responsibilities, long resume_id) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.responsibilities = responsibilities;
+        this.resume_id = resume_id;
+    }
 }

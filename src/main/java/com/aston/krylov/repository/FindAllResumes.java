@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindAllResumes {
+    private final AddWorkForResume addWorkForResume = new AddWorkForResume();
+    private List<Work> works;
+    private final List<Resume> resumes = new ArrayList<>();
 
     public List<Resume> findAll() {
-        List<Resume> resumes = new ArrayList<>();
-        List<Work> works;
+
         String sqlAllResume = "SELECT * FROM resume";
-        String sqlAllWork = "SELECT * FROM work";
 
         try (Connection connection = DbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlAllResume); ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
@@ -26,22 +27,11 @@ public class FindAllResumes {
                 resume.setSurname(resultSet.getString("surname"));
                 resume.setAge(resultSet.getInt("age"));
                 resume.setEmail(resultSet.getString("email"));
+
                 works = new ArrayList<>();
-                //Проходим по циклу в таблице work
-                try(PreparedStatement statement2 = connection.prepareStatement(sqlAllWork); ResultSet resultSet2 = statement2.executeQuery()){
-                    while(resultSet2.next()){
-                        Work work = new Work();
-                        if(resultSet2.getLong("resume_id") == id){
-                            System.out.println(resultSet2.getLong("resume_id"));
-                            work.setName(resultSet2.getString("name"));
-                            work.setStartDate((resultSet2.getDate("start_date")).toLocalDate());
-                            work.setEndDate((resultSet2.getDate("end_date")).toLocalDate());
-                            work.setResponsibilities(resultSet2.getString("responsibilities"));
-                            works.add(work);
-                        }
-                    }
-                }
+                works = addWorkForResume.setWork(connection, id);
                 resume.setWork(works);
+
                 resumes.add(resume);
             }
         } catch (SQLException e) {

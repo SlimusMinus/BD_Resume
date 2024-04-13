@@ -2,6 +2,7 @@ package com.aston.krylov.controller;
 
 import com.aston.krylov.dto.ResumeDTO;
 import com.aston.krylov.service.GetResumeByIdService;
+import com.aston.krylov.service.HandlerIdFromServlet;
 import com.aston.krylov.service.SendResponse;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import java.io.PrintWriter;
 public class GetResumeByIdServlet extends HttpServlet {
     private GetResumeByIdService resumeService;
     private SendResponse sendResponse;
+    private HandlerIdFromServlet handlerIdFromServlet;
 
     @Override
     public void init() {
@@ -27,21 +29,13 @@ public class GetResumeByIdServlet extends HttpServlet {
         }
         this.resumeService = new GetResumeByIdService();
         this.sendResponse = new SendResponse();
+        this.handlerIdFromServlet = new HandlerIdFromServlet();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         String idParam = req.getParameter("id");
-
-
-        if (idParam == null || idParam.isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().println("Resume ID not specified");
-        } else {
-            ResumeDTO resumeDTO = resumeService.getResume(Long.valueOf(idParam));
-            sendResponse.sendResponse(resp, resumeDTO);
-        }
-
+        handlerIdFromServlet.handlerId(idParam, resp, resumeService, sendResponse);
     }
 
 }
