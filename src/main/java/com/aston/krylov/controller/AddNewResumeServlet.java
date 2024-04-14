@@ -1,8 +1,8 @@
 package com.aston.krylov.controller;
 
-import com.aston.krylov.dto.ResumeDTO;
 import com.aston.krylov.entity.Resume;
-import com.aston.krylov.service.CreateResumeService;
+import com.aston.krylov.service.CreateAndUpdateService;
+import com.aston.krylov.service.CreateAndUpdateServiceInterface;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/add")
 public class AddNewResumeServlet extends HttpServlet {
-    private CreateResumeService resumeService;
+    private CreateAndUpdateServiceInterface resumeService;
 
     @Override
     public void init() {
@@ -23,7 +23,7 @@ public class AddNewResumeServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        this.resumeService = new CreateResumeService();
+        this.resumeService = new CreateAndUpdateService();
     }
 
     @Override

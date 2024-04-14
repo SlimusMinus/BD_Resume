@@ -1,7 +1,8 @@
 package com.aston.krylov.controller;
 
-import com.aston.krylov.service.DeleteMethodForServlet;
-import com.aston.krylov.service.DeleteResumeService;
+import com.aston.krylov.service.GetAndDeleteService;
+import com.aston.krylov.service.ServiceMethodsForServlet;
+import com.aston.krylov.service.ServiceMethodsForServletInterface;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +13,8 @@ import java.io.IOException;
 
 @WebServlet("/deleteById")
 public class DeleteByIdServlet extends HttpServlet {
-    private DeleteResumeService resumeService;
-    private DeleteMethodForServlet deleteMethodForServlet;
+    private GetAndDeleteService resumeService;
+    private ServiceMethodsForServletInterface deleteMethodForServlet;
 
     @Override
     public void init() {
@@ -23,8 +24,8 @@ public class DeleteByIdServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        this.resumeService = new DeleteResumeService();
-        this.deleteMethodForServlet = new DeleteMethodForServlet();
+        this.resumeService = new GetAndDeleteService();
+        this.deleteMethodForServlet = new ServiceMethodsForServlet();
     }
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {

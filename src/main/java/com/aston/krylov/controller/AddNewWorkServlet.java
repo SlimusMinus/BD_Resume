@@ -1,7 +1,8 @@
 package com.aston.krylov.controller;
 
 import com.aston.krylov.entity.Work;
-import com.aston.krylov.service.CreateWorkService;
+import com.aston.krylov.service.CreateAndUpdateService;
+import com.aston.krylov.service.CreateAndUpdateServiceInterface;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 
 @WebServlet("/addWork")
 public class AddNewWorkServlet extends HttpServlet {
-    private CreateWorkService createWorkService;
+    private CreateAndUpdateServiceInterface createWorkService;
 
     @Override
     public void init() {
@@ -23,7 +24,7 @@ public class AddNewWorkServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        this.createWorkService = new CreateWorkService();
+        this.createWorkService = new CreateAndUpdateService();
     }
 
     @Override

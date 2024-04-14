@@ -1,7 +1,7 @@
 package com.aston.krylov.service;
 
 import com.aston.krylov.entity.Work;
-import com.aston.krylov.repository.SaveWork;
+import com.aston.krylov.repository.CreateAndUpdateRepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,10 +12,10 @@ import static org.mockito.Mockito.verify;
 
 class CreateWorkServiceTest {
     @Mock
-    private SaveWork saveWork;
+    private CreateAndUpdateRepositoryInterface saveWork;
 
     @InjectMocks
-    private CreateWorkService createWorkService;
+    private CreateAndUpdateService createWorkService;
 
     @BeforeEach
     void setUp() {
@@ -32,6 +32,6 @@ class CreateWorkServiceTest {
         createWorkService.createWork(work);
 
         // Проверяем, что метод save был вызван с правильным аргументом
-        verify(saveWork).save(work);
+        verify(saveWork).saveWork(work);
     }
 }

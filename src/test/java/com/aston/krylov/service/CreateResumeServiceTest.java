@@ -1,7 +1,7 @@
 package com.aston.krylov.service;
 
 import com.aston.krylov.entity.Resume;
-import com.aston.krylov.repository.SaveResume;
+import com.aston.krylov.repository.CreateAndUpdateRepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,10 +13,10 @@ import static org.mockito.Mockito.*;
 class CreateResumeServiceTest {
 
     @Mock
-    private SaveResume saveResume;
+    private CreateAndUpdateRepositoryInterface saveResume;
 
     @InjectMocks
-    private CreateResumeService createResumeService;
+    private CreateAndUpdateService createResumeService;
 
     @BeforeEach
     void setUp() {
@@ -33,6 +33,6 @@ class CreateResumeServiceTest {
         createResumeService.createResume(resume);
 
         // Проверяем, что метод save был вызван с правильным аргументом
-        verify(saveResume).save(resume);
+        verify(saveResume).saveResume(resume);
     }
 }

@@ -1,8 +1,8 @@
 package com.aston.krylov.controller;
 
 import com.aston.krylov.entity.Resume;
-import com.aston.krylov.entity.Work;
-import com.aston.krylov.service.UpdateResumeService;
+import com.aston.krylov.service.CreateAndUpdateService;
+import com.aston.krylov.service.CreateAndUpdateServiceInterface;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/update")
 public class UpdateResumeServlet extends HttpServlet {
-    private UpdateResumeService updateResumeService;
+    private CreateAndUpdateServiceInterface updateResumeService;
 
     @Override
     public void init() {
@@ -25,7 +23,7 @@ public class UpdateResumeServlet extends HttpServlet {
         } catch (ClassNotFoundException | ServletException e) {
             throw new RuntimeException(e);
         }
-        this.updateResumeService = new UpdateResumeService();
+        this.updateResumeService = new CreateAndUpdateService();
     }
 
     @Override

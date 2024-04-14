@@ -1,6 +1,6 @@
 package com.aston.krylov.service;
 
-import com.aston.krylov.repository.DeleteResume;
+import com.aston.krylov.repository.GetAndDeleteRepositoryInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,9 +11,9 @@ import static org.mockito.Mockito.verify;
 
 class DeleteResumeServiceTest {
     @Mock
-    private DeleteResume deleteResume;
+    private GetAndDeleteRepositoryInterface deleteResume;
     @InjectMocks
-    private DeleteResumeService deleteResumeService;
+    private GetAndDeleteService deleteResumeService;
 
     @BeforeEach
     void setUp() {
