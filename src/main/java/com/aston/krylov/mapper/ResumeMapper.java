@@ -2,9 +2,6 @@ package com.aston.krylov.mapper;
 
 import com.aston.krylov.dto.ResumeDTO;
 import com.aston.krylov.entity.Resume;
-import com.aston.krylov.entity.Work;
-
-import java.util.List;
 
 public class ResumeMapper {
     public static ResumeDTO toDTO(Resume resume) {

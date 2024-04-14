@@ -1,6 +1,7 @@
 package com.aston.krylov.controller;
 
 import com.aston.krylov.dto.ResumeDTO;
+import com.aston.krylov.entity.Resume;
 import com.aston.krylov.service.CreateResumeService;
 
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class AddNewResumeServlet extends HttpServlet {
         int age = Integer.parseInt(req.getParameter("age"));
         String email = req.getParameter("email");
 
-        ResumeDTO resume = new ResumeDTO(name, surname, age, email);
+        Resume resume = new Resume(name, surname, age, email);
         resumeService.createResume(resume);
         resp.getWriter().println("Resume add successfully");
     }

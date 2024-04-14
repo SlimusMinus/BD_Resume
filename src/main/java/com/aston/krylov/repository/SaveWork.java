@@ -1,6 +1,7 @@
 package com.aston.krylov.repository;
 
 import com.aston.krylov.dto.WorkDTO;
+import com.aston.krylov.entity.Work;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SaveWork {
-    public void save(WorkDTO work) {
+    public void save(Work work) {
         String sqlSave = "INSERT into work (name, start_date, end_date, responsibilities, resume_id) values (?, ?, ?, ?, ?)";
 
         try (Connection connection = DbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlSave)) {

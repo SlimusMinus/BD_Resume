@@ -1,6 +1,7 @@
 package com.aston.krylov.controller;
 
 import com.aston.krylov.dto.WorkDTO;
+import com.aston.krylov.entity.Work;
 import com.aston.krylov.service.CreateWorkService;
 
 import javax.servlet.ServletException;
@@ -35,9 +36,9 @@ public class AddNewWorkServlet extends HttpServlet {
         String responsibilities = req.getParameter("responsibilities");
         long resume_id = Long.parseLong(req.getParameter("resume_id"));
 
-        WorkDTO workDTO = new WorkDTO(name, start_date, end_date, responsibilities, resume_id);
+        Work work = new Work(name, start_date, end_date, responsibilities, resume_id);
 
-        createWorkService.createResume(workDTO);
+        createWorkService.createResume(work);
 
         resp.getWriter().println("Work add successfully");
     }

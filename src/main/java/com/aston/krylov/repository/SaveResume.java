@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SaveResume {
-    public void save(ResumeDTO resume) {
+    public void save(Resume resume) {
         String sqlSave = "INSERT into resume (name, surname, age, email) values (?, ?, ?, ?)";
 
         try (Connection connection = DbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlSave)) {
