@@ -14,6 +14,8 @@
         <lombok.version>1.18.32</lombok.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
         <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <mockito-core.version>5.11.0</mockito-core.version>
 
     </properties>
 
@@ -51,6 +53,22 @@
             <artifactId>jakarta.persistence-api</artifactId>
             <version>${jakarta.persistence.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
 
     </dependencies>

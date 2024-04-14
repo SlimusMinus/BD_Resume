@@ -1,11 +1,9 @@
 package com.aston.krylov.repository;
 
-import com.aston.krylov.dto.ResumeDTO;
 import com.aston.krylov.entity.Resume;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SaveResume {

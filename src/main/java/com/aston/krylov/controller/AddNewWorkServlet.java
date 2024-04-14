@@ -1,6 +1,5 @@
 package com.aston.krylov.controller;
 
-import com.aston.krylov.dto.WorkDTO;
 import com.aston.krylov.entity.Work;
 import com.aston.krylov.service.CreateWorkService;
 
@@ -38,7 +37,7 @@ public class AddNewWorkServlet extends HttpServlet {
 
         Work work = new Work(name, start_date, end_date, responsibilities, resume_id);
 
-        createWorkService.createResume(work);
+        createWorkService.createWork(work);
 
         resp.getWriter().println("Work add successfully");
     }
