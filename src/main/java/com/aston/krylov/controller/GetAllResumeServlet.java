@@ -32,10 +32,14 @@ public class GetAllResumeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         List<ResumeDTO> resumes = resumeService.getAllResumes();
         for (ResumeDTO item : resumes) {
-            sendResponse.sendResponse(resp, item);
+            try {
+                sendResponse.sendResponse(resp, item);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

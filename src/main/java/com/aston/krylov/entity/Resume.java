@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 @ToString
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class Resume {
     private long resumeId;

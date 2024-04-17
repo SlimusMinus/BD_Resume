@@ -27,7 +27,7 @@ public class AddNewResumeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");

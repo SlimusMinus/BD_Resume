@@ -27,7 +27,7 @@ public class UpdateResumeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         long id = Long.parseLong(req.getParameter("id"));
         String name = req.getParameter("name");

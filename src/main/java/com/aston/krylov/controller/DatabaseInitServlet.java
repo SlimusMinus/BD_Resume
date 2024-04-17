@@ -18,7 +18,6 @@ public class DatabaseInitServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-
         try (Connection connection = DbConnection.getConnection()) {
             Class.forName("org.postgresql.Driver");
             Statement statement = connection.createStatement();
@@ -41,6 +40,8 @@ public class DatabaseInitServlet extends HttpServlet {
                     "    resume_id BIGINT,\n" +
                     "    FOREIGN KEY (resume_id) REFERENCES resume(resume_id) ON DELETE CASCADE\n" +
                     ");";
+
+
             statement.execute(createTableSQL2);
 
         } catch (SQLException e) {

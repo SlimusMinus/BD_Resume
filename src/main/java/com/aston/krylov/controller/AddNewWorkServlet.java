@@ -28,7 +28,7 @@ public class AddNewWorkServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String name = req.getParameter("name");
         LocalDate start_date = LocalDate.parse(req.getParameter("start_date"));

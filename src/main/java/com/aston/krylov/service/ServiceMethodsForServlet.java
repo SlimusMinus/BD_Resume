@@ -1,17 +1,24 @@
 package com.aston.krylov.service;
 
 import com.aston.krylov.dto.ResumeDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ServiceMethodsForServlet implements ServiceMethodsForServletInterface{
+
+    private static final Logger log = LoggerFactory.getLogger(ServiceMethodsForServlet.class);
+
     @Override
     public void deleteResume(String idParam, HttpServletResponse resp, GetAndDeleteService resumeService) throws IOException {
         if (idParam == null || idParam.isEmpty()) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             resp.getWriter().println("Resume ID not specified");
+            log.warn("Resume with {} id not specified", idParam);
         }
         try {
             long id = Long.parseLong(idParam);
@@ -19,12 +26,16 @@ public class ServiceMethodsForServlet implements ServiceMethodsForServletInterfa
 
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.getWriter().println("Resume with " + id + " successfully delete");
-        } catch (NumberFormatException e) {
+            log.warn("Resume with {} id successfully delete", idParam);
+        }
+        catch (NumberFormatException e) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().println("Uncorrect format id resume");
+            resp.getWriter().println("Uncorrected format id resume");
+            log.warn("Uncorrected format {} id resume", idParam);
         } catch (Exception e) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             resp.getWriter().println("Exception for delete resume: " + e.getMessage());
+            log.error("{} exception for delete resume, idParam", e.getMessage());
         }
     }
 
@@ -34,13 +45,18 @@ public class ServiceMethodsForServlet implements ServiceMethodsForServletInterfa
             if (idParam == null || idParam.isEmpty()) {
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 resp.getWriter().println("Resume ID not specified");
+                log.warn("Resume {} id not specified", idParam);
+
             } else {
                 ResumeDTO resumeDTO = resumeService.getResume(Long.valueOf(idParam));
                 sendResponse(resp, resumeDTO);
+                log.debug("Send response with {} resume", resumeDTO);
             }
         }
         catch (IOException exception){
             System.out.println(exception.getMessage());
+            log.error("{} exception when send response", exception.getMessage());
+
         }
     }
 

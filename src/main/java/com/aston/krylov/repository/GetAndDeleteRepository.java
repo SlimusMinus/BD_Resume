@@ -2,6 +2,9 @@ package com.aston.krylov.repository;
 
 import com.aston.krylov.entity.Resume;
 import com.aston.krylov.entity.Work;
+import com.aston.krylov.service.CreateAndUpdateService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{
+    private static final Logger log = LoggerFactory.getLogger(GetAndDeleteRepository.class);
 
     @Override
     public List<Work> setWork(Connection connection, Long id) throws SQLException {
@@ -28,6 +32,7 @@ public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{
                 }
             }
         }
+        log.debug("Resume with {} id, was add {} work", id, works);
         return works;
     }
 
@@ -49,11 +54,12 @@ public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{
                     works = new ArrayList<>();
                     works = setWork(connection, id);
                     resume.setWork(works);
-
+                    log.debug("Resume with {} id was requested");
                     return resume;
                 }
             }
         } catch (SQLException e) {
+            log.error("Runtime exception when was find by {} id", id);
             throw new RuntimeException(e);
         }
 
@@ -79,10 +85,11 @@ public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{
                 works = new ArrayList<>();
                 works = setWork(connection, id);
                 resume.setWork(works);
-
+                log.debug("All resumes was requested");
                 resumes.add(resume);
             }
         } catch (SQLException e) {
+            log.error("{} runtime exception when all resumes was requested", e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -96,9 +103,11 @@ public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{
             statement.setLong(1, id);
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected == 0) {
+                log.error("Deleting resume failed, no rows affected");
                 throw new SQLException("Deleting resume failed, no rows affected.");
             }
         } catch (SQLException e) {
+            log.error("Runtime exception when was deleted by {} id", id);
             throw new RuntimeException(e);
         }
     }
