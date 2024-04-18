@@ -1,6 +1,7 @@
 package com.aston.krylov.service;
 
 import com.aston.krylov.dto.ResumeDTO;
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,7 +65,9 @@ public class ServiceMethodsForServlet implements ServiceMethodsForServletInterfa
     public void sendResponse(HttpServletResponse resp, ResumeDTO resumeDTO) throws IOException {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-        out.print(resumeDTO.toString());
+        Gson gson = new Gson();
+        String json = gson.toJson(resumeDTO);
+        out.print(json);
         out.flush();
     }
 }
