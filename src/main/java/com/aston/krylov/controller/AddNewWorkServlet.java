@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet("/addWork")
+@WebServlet("/insert/*")
 public class AddNewWorkServlet extends HttpServlet {
     private CreateAndUpdateServiceInterface createWorkService;
 

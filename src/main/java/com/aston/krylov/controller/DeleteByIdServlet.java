@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/deleteById")
+@WebServlet("/resumes/clean/*")
 public class DeleteByIdServlet extends HttpServlet {
     private GetAndDeleteService resumeService;
     private ServiceMethodsForServletInterface deleteMethodForServlet;
@@ -29,7 +29,7 @@ public class DeleteByIdServlet extends HttpServlet {
     }
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String idParam = req.getParameter("id");
+        String idParam = deleteMethodForServlet.extractIdFromPath(req.getPathInfo());
         deleteMethodForServlet.deleteResume(idParam, resp, resumeService);
     }
 

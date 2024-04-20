@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/add")
+@WebServlet("/insert")
 public class AddNewResumeServlet extends HttpServlet {
     private CreateAndUpdateServiceInterface resumeService;
 

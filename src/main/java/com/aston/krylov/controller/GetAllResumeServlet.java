@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/getAll")
+@WebServlet("/resumes")
 public class GetAllResumeServlet extends HttpServlet {
     private GetAndDeleteServiceInterface resumeService;
     private ServiceMethodsForServletInterface sendResponse;

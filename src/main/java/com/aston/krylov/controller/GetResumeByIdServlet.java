@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/get")
+@WebServlet("/resumes/*")
 public class GetResumeByIdServlet extends HttpServlet {
     private GetAndDeleteService resumeService;
     private ServiceMethodsForServletInterface handlerIdFromServlet;
@@ -30,8 +30,10 @@ public class GetResumeByIdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        String idParam = req.getParameter("id");
+        String idParam = handlerIdFromServlet.extractIdFromPath(req.getPathInfo());
         handlerIdFromServlet.handlerId(idParam, resp, resumeService);
     }
+
+
 
 }

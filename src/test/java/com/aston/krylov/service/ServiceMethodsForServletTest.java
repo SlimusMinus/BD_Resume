@@ -9,8 +9,11 @@ import org.mockito.Mockito;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Checking that")
 class ServiceMethodsForServletTest {
@@ -47,4 +50,6 @@ class ServiceMethodsForServletTest {
         methodsForServlet.sendResponse(resp, resumeDTO);
         Mockito.verify(methodsForServlet).sendResponse(resp, resumeDTO);
     }
+
+
 }

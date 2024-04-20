@@ -70,4 +70,12 @@ public class ServiceMethodsForServlet implements ServiceMethodsForServletInterfa
         out.print(json);
         out.flush();
     }
+    @Override
+    public String extractIdFromPath(String pathInfo) {
+        if (pathInfo == null || pathInfo.isEmpty()) {
+            return null;
+        }
+        String[] parts = pathInfo.split("/");
+        return parts[parts.length - 1];
+    }
 }
