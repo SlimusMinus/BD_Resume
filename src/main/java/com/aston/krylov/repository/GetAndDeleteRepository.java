@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{
+public class GetAndDeleteRepository implements GetAndDeleteRepositoryInterface{ // репозитории нужно создавать под сущности а не методы
     private static final Logger log = LoggerFactory.getLogger(GetAndDeleteRepository.class);
 
     @Override
