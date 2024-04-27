@@ -18,7 +18,9 @@ public class CreateAndUpdateRepository implements CreateAndUpdateRepositoryInter
     public void saveResume(Resume resume) {
         String sqlSave = "INSERT into resume (name, surname, age, email) values (?, ?, ?, ?)";
 
-        try (Connection connection = DbConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlSave)) {
+        try (Connection connection = DbConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlSave)
+        ) {
             statement.setString(1, resume.getName());
             statement.setString(2, resume.getSurname());
             statement.setInt(3, resume.getAge());

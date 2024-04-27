@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/resumes/clean/*")
-public class DeleteByIdServlet extends HttpServlet {
+public class DeleteByIdServlet extends HttpServlet { // не нужно выделять сервлет под каждый метод
     private GetAndDeleteService resumeService;
     private ServiceMethodsForServletInterface deleteMethodForServlet;
 
